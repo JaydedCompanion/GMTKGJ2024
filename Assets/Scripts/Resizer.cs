@@ -30,6 +30,11 @@ public class Resizer : MonoBehaviour {
 	public float pieceDistanceToRepair;
 	public float pieceMinDistanceAfterDestruction;
 	public float explodeForce;
+	[Header ("Prompt Visualizer Parameters")]
+	public LayerMask openingBlockers;
+	public ResizerOpeningUI openingTop;
+	public ResizerOpeningUI openingLeft;
+	public ResizerOpeningUI openingRight;
 
 	private Rigidbody2D rb;
 	public Collider2D coll { get; private set; }
@@ -50,6 +55,7 @@ public class Resizer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+#if UNITY_EDITOR
 		Debug.DrawLine (
 			transform.position + Vector3.left + (Vector3.up * lowestTouchY),
 			transform.position + Vector3.right + (Vector3.up * lowestTouchY),
@@ -70,8 +76,8 @@ public class Resizer : MonoBehaviour {
 			transform.position + (Vector3.up * exitClearanceDistance),
 			Color.red
 			);
-
 		pieceMinDistanceAfterDestruction = Mathf.Max (pieceMinDistanceAfterDestruction, pieceDistanceToRepair);
+#endif
 
 		if (!Application.isPlaying) return;
 
@@ -81,6 +87,8 @@ public class Resizer : MonoBehaviour {
 		averagePiecePos /= pieceInstances.Count;
 
 		transform.GetChild(0).gameObject.SetActive (!dormant);
+
+		UpdateOpeningClearance ();
 
 		if (dormant) {
 			//Move self to the average position of all pieces, which will facilitate the calculation of whether all pieces are near one another
@@ -111,11 +119,10 @@ public class Resizer : MonoBehaviour {
 			coll.enabled = false;
 		} else if (!PlayerController.instance.holdingObject || PlayerController.instance.holdingObject != rb) {
 			//If holding the player, freeze the box in place and disable the collider
-			if (holdingPlayer)
-				rb.velocity = Vector3.zero;
 			rb.isKinematic = holdingPlayer;
 			coll.enabled = !holdingPlayer;
 			if (holdingPlayer) {
+				rb.velocity = Vector3.zero;
 				PlayerController inst = PlayerController.instance;
 				//If holding player, disable their physics and pull them into the center of the box
 				inst.rb.isKinematic = true;
@@ -134,12 +141,31 @@ public class Resizer : MonoBehaviour {
 						releasePlayer = Directions.RIGHT;
 					else if (Input.GetAxisRaw ("Vertical") > 0.5f)
 						releasePlayer = Directions.TOP;
+				//Set the status of the openings
+				switch (directionEntered) {
+				case Directions.LEFT:
+					openingLeft.status = ResizeMode.SAME;
+					openingTop.status = ResizeMode.GROW;
+					openingRight.status = ResizeMode.GROW;
+					break;
+				case Directions.RIGHT:
+					openingLeft.status = ResizeMode.SHRINK;
+					openingTop.status = ResizeMode.SHRINK;
+					openingRight.status = ResizeMode.SAME;
+					break;
+				}
+				if (Physics2D.Raycast (transform.position, Vector3.left, exitClearanceDistance, openingBlockers))
+					openingLeft.status = ResizeMode.BLOCKED;
+				if (Physics2D.Raycast (transform.position, Vector3.right, exitClearanceDistance, openingBlockers))
+					openingRight.status = ResizeMode.BLOCKED;
+				if (Physics2D.Raycast (transform.position, Vector3.up, exitClearanceDistance, openingBlockers))
+					openingTop.status = ResizeMode.BLOCKED;
 				//Handle player exiting via different directions
 				switch (releasePlayer) {
 				//Handle player exiting through the left
 				case Directions.LEFT:
 					//Stop the player from exiting if the exit is blocked;
-					if (Physics2D.Raycast (transform.position, Vector3.left, exitClearanceDistance)) {
+					if (openingLeft.status == ResizeMode.BLOCKED) {
 						releasePlayer = Directions.NONE;
 						break;
 					}
@@ -151,7 +177,7 @@ public class Resizer : MonoBehaviour {
 				//Handle player exiting through the right
 				case Directions.RIGHT:
 					//Stop the player from exiting if the exit is blocked;
-					if (Physics2D.Raycast (transform.position, Vector3.right, exitClearanceDistance)) {
+					if (openingRight.status == ResizeMode.BLOCKED) {
 						releasePlayer = Directions.NONE;
 						break;
 					}
@@ -163,7 +189,7 @@ public class Resizer : MonoBehaviour {
 				//Handle player exiting through the top
 				case Directions.TOP:
 					//Stop the player from exiting if the exit is blocked;
-					if (Physics2D.Raycast (transform.position, Vector3.up, exitClearanceDistance)) {
+					if (openingTop.status == ResizeMode.BLOCKED) {
 						releasePlayer = Directions.NONE;
 						break;
 					}
@@ -217,6 +243,21 @@ public class Resizer : MonoBehaviour {
 		}
 		dormant = true;
 		piecesSeparating = true;
+	}
+
+	private void UpdateOpeningClearance () {
+		openingLeft.status = ResizeMode.IDLE;
+		openingRight.status = ResizeMode.IDLE;
+		openingTop.status = ResizeMode.IDLE;
+		if (Physics2D.Raycast (transform.position, Vector3.left, exitClearanceDistance, openingBlockers))
+			openingLeft.status = ResizeMode.BLOCKED;
+		if (Physics2D.Raycast (transform.position, Vector3.right, exitClearanceDistance, openingBlockers))
+			openingRight.status = ResizeMode.BLOCKED;
+		if (Physics2D.Raycast (transform.position, Vector3.up, exitClearanceDistance, openingBlockers))
+			openingTop.status = ResizeMode.BLOCKED;
+		openingLeft.gameObject.SetActive (PlayerController.instance.sizeMode != SizeModes.BEEG);
+		openingRight.gameObject.SetActive (PlayerController.instance.sizeMode != SizeModes.SMOL);
+
 	}
 
 }

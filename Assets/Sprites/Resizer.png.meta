@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 09e25ccdbfad249669b21dfb1706149e
+guid: 29fe00f8fc48d4b928c799c5b1a44caa
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 512
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,117 +123,159 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BeanieBoy_Body
+      name: Resizer
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
-        width: 512
-        height: 512
+        y: 768
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: dfcdafb7832b2ca00800000000000000
-      internalID: 775378041529097469
+      spriteID: bb0b6006289d8435ab279bb10c0c70ba
+      internalID: 776747079
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeanieBoy_ArmL
+      name: Resizer_Piece00
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c6f6e79f66d74746b2141fe47c2b275
+      internalID: -1336315928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Resizer_Piece02
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52e73d1e092054258b3e91939c5010b2
+      internalID: -583322360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Resizer_Piece04
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41f138d304023446d87a2ae92d50fda4
+      internalID: -1832197129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Resizer_Gizmo
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 896
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.2836919, y: 0.4008584}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09909fa7c2c1043369dac0aa6ac6c35c
+      internalID: -649773132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Resizer_Piece01
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b688d73b3b904f65946827523af3d24
+      internalID: 1236766326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Resizer_Piece03
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20e51e3c90a004e8c8cbd558d3783ba5
+      internalID: 654236162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Resizer_Piece06
       rect:
         serializedVersion: 2
         x: 512
         y: 768
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.4619386, y: 0.8667648}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cb775f11f2480f510800000000000000
-      internalID: 1580908806906673084
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BeanieBoy_ArmR
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 768
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.5013449, y: 0.8786345}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ce8e4daee6cc29c40800000000000000
-      internalID: 5517697270240569580
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BeanieBoy_LegL
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.4743207, y: 0.7379589}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 163fb7ba301f28a30800000000000000
-      internalID: 4216197199236428641
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BeanieBoy_LegR
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 512
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.462337, y: 0.7516544}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ecf18bcb9a7bfd760800000000000000
-      internalID: 7484903045356593102
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BeanieBoy_Walking
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 384
-        width: 256
+        width: 128
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -242,113 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 694f22450c3b54adc9b1bc77cccb0dcc
-      internalID: 468394590
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BeanieBoy_Grimace
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 384
-        width: 256
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 21b87ed7fb8504ba78d8f8cdd841751a
-      internalID: -1125933
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BeanieBoy_Idle
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 256
-        width: 256
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 46adfcb3c54da4e29ad4b6893ecfa7ca
-      internalID: -509281682
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BeanieBoy_Smile
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 256
-        width: 256
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3cfd564cc8dfd49f1b87ed529b210c00
-      internalID: -104625409
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BeanieBoy_Pleading
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 384
-        width: 256
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c88cf729dedbf4f688ec2ee11065fef8
-      internalID: -996334545
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BeanieBoy_Blink
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 256
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 58a210ea1955f4444b2023f8ee6e232e
-      internalID: 34439738
+      spriteID: 15edd47ee544b415290b4c0eee51814a
+      internalID: -1389234913
       vertices: []
       indices: 
       edges: []
@@ -364,20 +301,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BeanieBoy.Outline_1: 1487645116
-      BeanieBoy.Outline_3: 1935578734
-      BeanieBoy.Outline_5: -1053725012
-      BeanieBoy_ArmL: 1580908806906673084
-      BeanieBoy_ArmR: 5517697270240569580
-      BeanieBoy_Blink: 34439738
-      BeanieBoy_Body: 775378041529097469
-      BeanieBoy_Grimace: -1125933
-      BeanieBoy_Idle: -509281682
-      BeanieBoy_LegL: 4216197199236428641
-      BeanieBoy_LegR: 7484903045356593102
-      BeanieBoy_Pleading: -996334545
-      BeanieBoy_Smile: -104625409
-      BeanieBoy_Walking: 468394590
+      Resizer: 776747079
+      Resizer_1: -1817110916
+      Resizer_6: -965300883
+      Resizer_7: 979315763
+      Resizer_Gizmo: -649773132
+      Resizer_Piece00: -1336315928
+      Resizer_Piece01: 1236766326
+      Resizer_Piece02: -583322360
+      Resizer_Piece03: 654236162
+      Resizer_Piece04: -1832197129
+      Resizer_Piece06: -1389234913
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

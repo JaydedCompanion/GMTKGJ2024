@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BeanieBoy_Body.Infill
+      name: BeanieBoy_Body
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9f641a3effffffff0800000000000000
-      internalID: -475969799
+      spriteID: 46773067000000000800000000000000
+      internalID: 1979938660
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeanieBoy_ArmL.Infill
+      name: BeanieBoy_ArmL
       rect:
         serializedVersion: 2
         x: 512
@@ -152,20 +152,20 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.4663436, y: 0.7478356}
+      pivot: {x: 0.4619386, y: 0.8667648}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 939a28c3000000000800000000000000
-      internalID: 1015195961
+      spriteID: a06f308bffffffff0800000000000000
+      internalID: -1207699958
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeanieBoy_ArmR.Infill
+      name: BeanieBoy_ArmR
       rect:
         serializedVersion: 2
         x: 768
@@ -173,20 +173,20 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.4969406, y: 0.7508955}
+      pivot: {x: 0.5013449, y: 0.8786345}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e6a69346000000000800000000000000
-      internalID: 1681484398
+      spriteID: f10b886cffffffff0800000000000000
+      internalID: -964120545
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeanieBoy_LegL.Infill
+      name: BeanieBoy_LegL
       rect:
         serializedVersion: 2
         x: 512
@@ -200,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 01931142000000000800000000000000
-      internalID: 605108496
+      spriteID: 181c442fffffffff0800000000000000
+      internalID: -230375039
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeanieBoy_LegR.Infill
+      name: BeanieBoy_LegR
       rect:
         serializedVersion: 2
         x: 768
@@ -221,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 81d40dd5000000000800000000000000
-      internalID: 1573932312
+      spriteID: ddb6d44fffffffff0800000000000000
+      internalID: -196252707
       vertices: []
       indices: 
       edges: []
@@ -246,13 +246,30 @@ TextureImporter:
       BeanieBoy.Infill_5: 1651487591
       BeanieBoy.Infill_6: -1433461796
       BeanieBoy.Infill_7: 1506827765
+      BeanieBoy.Outline_0: -1214931757
+      BeanieBoy_ArmL: -1207699958
       BeanieBoy_ArmL.Infill: 1015195961
+      BeanieBoy_ArmL.Outline: -1264990827
+      BeanieBoy_ArmR: -964120545
       BeanieBoy_ArmR.Infill: 1681484398
+      BeanieBoy_ArmR.Outline: 554109645
+      BeanieBoy_Body: 1979938660
       BeanieBoy_Body.Infill: -475969799
+      BeanieBoy_Body.Outline: -563495483
+      BeanieBoy_Closed: -62174116
+      BeanieBoy_Closed.Outline: -30278560
+      BeanieBoy_Grimace: 1804237784
       BeanieBoy_Grimace.Outline: -177818128
+      BeanieBoy_Idle: 2026345153
       BeanieBoy_Idle.Outline: 923685676
+      BeanieBoy_LegL: -230375039
       BeanieBoy_LegL.Infill: 605108496
+      BeanieBoy_LegL.Outline: 1019445683
+      BeanieBoy_LegR: -196252707
       BeanieBoy_LegR.Infill: 1573932312
+      BeanieBoy_LegR.Outline: -1637567164
+      BeanieBoy_Pleading: 799830336
+      BeanieBoy_Smile: 736955056
       BeanieBoy_Smile.Outline: -458322859
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

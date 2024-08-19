@@ -76,35 +76,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7a6ca91cd9d41ad8848a1699121856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counterpart: {fileID: 5611506845052076206}
+  joint: {x: 0.1, y: 0, z: 0}
+  raycastDirectionIdle: {x: 0.1, y: -0.6, z: 0}
+  maxIdleFootDistance: 0.02
   stepLegLiftAnimation:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.93724686
-      outSlope: 0.93724686
+      inSlope: 0.75552684
+      outSlope: 0.75552684
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.074554294
+      outWeight: 0.042888496
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -1.0084995
-      outSlope: -1.0084995
+      inSlope: -0.8264807
+      outSlope: -0.8264807
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.09238249
+      inWeight: 0.036762178
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  stepLegLiftSpeed: 0
-  joint: {x: 0.1, y: -0.15, z: 0}
-  raycastDirection: {x: 0.25, y: -0.45, z: 0}
-  maxStepDistance: 0.3
+  stepSpeedSmol: 24
+  stepSpeedMedium: 16
+  stepSpeedBeeg: 8
+  stepPhase: 1
+  raycastDirectionWalk: {x: 0.4, y: -0.4, z: 0}
+  maxStepDistance: 0.1
+  aerialStepPosition: {x: 0.4, y: -0.3, z: 0}
+  groundSlamStepPosition: {x: 0.5, y: 0.4, z: 0}
+  aerialStepSwaySpeed: 1.5
+  aerialStepSwayMagnitude: 0.25
+  aerialStepLerpSpeed: 20
 --- !u!1 &1087101348955792163
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,6 +198,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1127236368761033079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6270090635931897969}
+  - component: {fileID: 2077739880281481703}
+  m_Layer: 0
+  m_Name: ArmAnimator.R
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6270090635931897969
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127236368761033079}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0.1110526, w: 0.9938146}
+  m_LocalPosition: {x: 0.324, y: -0.29, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3487381059858304541}
+  m_Father: {fileID: 9038384113798592289}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 12.752}
+--- !u!114 &2077739880281481703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127236368761033079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc7694394e724b98b32d740003f4c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joint: {x: 0.25, y: 0, z: 0}
+  aerialHandPosition: {x: 0.6, y: 0.2, z: 0}
+  groundSlamHandPosition: {x: 0.15, y: -0.45, z: 0}
+  lerpSpeed: 30
 --- !u!1 &1181733962132145847
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6396032629941474975}
   - component: {fileID: 3304221364666784673}
+  - component: {fileID: 3121818072841397577}
   m_Layer: 7
   m_Name: Renderer.Eyes
   m_TagString: Untagged
@@ -273,6 +332,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3121818072841397577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181733962132145847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39b7f0f7c7e34092917aae57f87bc39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idle: {fileID: -509281682, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
+  walking: {fileID: 468394590, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
+  blink: {fileID: 34439738, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
+  smile: {fileID: -104625409, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
+  grimace: {fileID: -1125933, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
+  pleading: {fileID: -996334545, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
+  minBlinkTime: 2
+  maxBlinkTime: 8
+  blinkDuration: 0.1
+  blinkTimer: 0
 --- !u!1 &1334718609820984211
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,14 +379,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1334718609820984211}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.11789032, w: 0.9930266}
-  m_LocalPosition: {x: 0.175, y: -0.037, z: 0.6}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.35, z: 0.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4459158670493536091}
-  m_Father: {fileID: 9038384113798592289}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 13.541}
+  m_Father: {fileID: 6270090635931897969}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7602703870560398203
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -347,12 +428,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1681484398, guid: 782918a37459a45d192c2ca841b626dd, type: 3}
+  m_Sprite: {fileID: -964120545, guid: 782918a37459a45d192c2ca841b626dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -473,9 +554,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4821639314112570577}
-  - {fileID: 6292869708561538373}
-  - {fileID: 3487381059858304541}
   - {fileID: 6396032629941474975}
+  - {fileID: 7099418578609781311}
+  - {fileID: 6270090635931897969}
   - {fileID: 654252895797540191}
   - {fileID: 4401238993337511793}
   m_Father: {fileID: 4272482955986169689}
@@ -521,7 +602,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -475969799, guid: 782918a37459a45d192c2ca841b626dd, type: 3}
+  m_Sprite: {fileID: 1979938660, guid: 782918a37459a45d192c2ca841b626dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -577,35 +658,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7a6ca91cd9d41ad8848a1699121856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counterpart: {fileID: 7150240776003443986}
+  joint: {x: -0.1, y: 0, z: 0}
+  raycastDirectionIdle: {x: -0.1, y: -0.6, z: 0}
+  maxIdleFootDistance: 0.02
   stepLegLiftAnimation:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.93724686
-      outSlope: 0.93724686
+      inSlope: 0.75552684
+      outSlope: 0.75552684
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.074554294
+      outWeight: 0.042888496
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -1.0084995
-      outSlope: -1.0084995
+      inSlope: -0.8264807
+      outSlope: -0.8264807
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.09238249
+      inWeight: 0.036762178
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  stepLegLiftSpeed: 0
-  joint: {x: -0.11, y: -0.15, z: 0}
-  raycastDirection: {x: 0, y: -0.45, z: 0}
-  maxStepDistance: 0.3
+  stepSpeedSmol: 24
+  stepSpeedMedium: 16
+  stepSpeedBeeg: 8
+  stepPhase: 0
+  raycastDirectionWalk: {x: 0.2, y: -0.4, z: 0}
+  maxStepDistance: 0.1
+  aerialStepPosition: {x: -0.4, y: -0.3, z: 0}
+  groundSlamStepPosition: {x: -0.5, y: 0.4, z: 0}
+  aerialStepSwaySpeed: 1.5
+  aerialStepSwayMagnitude: 0.25
+  aerialStepLerpSpeed: 20
 --- !u!1 &5690785994468285428
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,12 +854,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 605108496, guid: 782918a37459a45d192c2ca841b626dd, type: 3}
+  m_Sprite: {fileID: -230375039, guid: 782918a37459a45d192c2ca841b626dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -972,6 +1062,55 @@ PolygonCollider2D:
       - {x: 0.24, y: -0.2}
       - {x: 0.011283055, y: 0.25}
   m_UseDelaunayMesh: 0
+--- !u!1 &6346891188491193638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7099418578609781311}
+  - component: {fileID: 2469812353763215611}
+  m_Layer: 0
+  m_Name: ArmAnimator.L
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7099418578609781311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6346891188491193638}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0.1110551, w: 0.9938143}
+  m_LocalPosition: {x: -0.281, y: -0.285, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6292869708561538373}
+  m_Father: {fileID: 9038384113798592289}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2469812353763215611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6346891188491193638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebc7694394e724b98b32d740003f4c0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joint: {x: -0.25, y: 0, z: 0}
+  aerialHandPosition: {x: -0.6, y: 0.2, z: 0}
+  groundSlamHandPosition: {x: -0.15, y: -0.45, z: 0}
+  lerpSpeed: 30
 --- !u!1 &7624473548628455909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,12 +1185,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 605108496, guid: 782918a37459a45d192c2ca841b626dd, type: 3}
+  m_Sprite: {fileID: -196252707, guid: 782918a37459a45d192c2ca841b626dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1082,13 +1221,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7857657964332185941}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.1110551, w: 0.9938143}
-  m_LocalPosition: {x: -0.125, y: -0.02600002, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8862293380601950021}
-  m_Father: {fileID: 9038384113798592289}
+  m_Father: {fileID: 7099418578609781311}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -12.752}
 --- !u!212 &2428316314982226656
 SpriteRenderer:
@@ -1131,12 +1270,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1015195961, guid: 782918a37459a45d192c2ca841b626dd, type: 3}
+  m_Sprite: {fileID: -1207699958, guid: 782918a37459a45d192c2ca841b626dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

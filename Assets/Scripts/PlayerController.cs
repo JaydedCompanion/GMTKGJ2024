@@ -48,15 +48,15 @@ public class PlayerController : MonoBehaviour {
 
     public static UnityEngine.Events.UnityEvent groundSlamShockwave = new UnityEngine.Events.UnityEvent ();
 	public bool grounded { get { return Time.time - timeSinceLastGrounded < coyoteTime; } }
-    private bool groundSlamming;
+    public bool groundSlamming { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public Collider2D coll { get; private set; }
     private Collider2D groundColliderA;
     private Collider2D groundColliderB;
     private Vector3 currentSize;
-    private Vector3 facingDirection = Vector3.one;
-    private static readonly Vector3 facingRight = new Vector3 (  1, 1, 1 );
-    private static readonly Vector3 facingLeft  = new Vector3 ( -1, 1, 1 );
+    public Vector3 facingDirection { get; private set; }
+    public static readonly Vector3 facingRight = new Vector3 (  1, 1, 1 );
+    public static readonly Vector3 facingLeft  = new Vector3 ( -1, 1, 1 );
     private float timeSinceLastGrounded;
 
     // Start is called before the first frame update
@@ -78,8 +78,10 @@ public class PlayerController : MonoBehaviour {
 
     private void Update () {
 
+#if UNITY_EDITOR
         Debug.DrawRay (transform.position + Vector3.Scale (groundedRaycastOriginA, transform.lossyScale), Vector2.down * groundedRaycastDistance * transform.lossyScale.y, Color.blue);
         Debug.DrawRay (transform.position + Vector3.Scale (groundedRaycastOriginB, transform.lossyScale), Vector2.down * groundedRaycastDistance * transform.lossyScale.y, Color.blue);
+#endif
 
         holdPivot.position = transform.position;
 
@@ -185,7 +187,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void OnCollisionStay2D (Collision2D collision) {
         foreach (ContactPoint2D point in collision.contacts)
-            DrawCross (point.point, 1, Color.red);
+            DrawX (point.point, 0.1f, Color.red);
         if (!holdingObject) {
             //Any resizer piece can be grabbed by just touching the object while not holding another object
             if (collision.collider.tag == "ResizerPiece")
@@ -203,9 +205,17 @@ public class PlayerController : MonoBehaviour {
         holdingObjectCollider.enabled = false;
     }
 
-    private void DrawCross (Vector3 pos, float size, Color col) {
-        Debug.DrawLine (pos - (Vector3.one * size), pos + (Vector3.one * size), col);
-        Debug.DrawLine (pos - (Vector3.right * size), pos + (Vector3.right * size), col);
+    public static void DrawX (Vector3 position, float size, Color col) {
+        Debug.DrawLine (
+            position - (PlayerController.facingRight * size / 2),
+            position + (PlayerController.facingRight * size / 2),
+            col
+            );
+        Debug.DrawLine (
+            position - (PlayerController.facingLeft * size / 2),
+            position + (PlayerController.facingLeft * size / 2),
+            col
+            );
     }
 
 }
