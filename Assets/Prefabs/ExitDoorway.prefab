@@ -10103,7 +10103,7 @@ MonoBehaviour:
   bottom: {fileID: 4357771683814423127}
   openDistance: 0.4
   lerpSpeed: 10
-  delayBeforeNextLevel: 2
+  delayBeforeNextLevel: 4
 --- !u!1 &7678141940394082635
 GameObject:
   m_ObjectHideFlags: 0
