@@ -5,6 +5,8 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class PlayerHandAnimator : MonoBehaviour {
 
+    public bool holder;
+    public float holdOffset;
     public Vector3 joint;
     public Vector3 aerialHandPosition;
     public Vector3 groundSlamHandPosition;
@@ -43,7 +45,18 @@ public class PlayerHandAnimator : MonoBehaviour {
         Vector3 dPos = jointWorldSpace - transform.position;
         transform.rotation = Quaternion.Euler (0, 0, Mathf.Rad2Deg * -Mathf.Atan2 (dPos.x, dPos.y));
 
-        transform.position = Vector3.Lerp (transform.position, estrangedParent.position + Vector3.Scale (PlayerController.instance.groundSlamming ? groundSlamHandPosition : (PlayerController.instance.grounded ? restPos : aerialHandPosition), scaleFactor), Time.deltaTime * lerpSpeed);
+        Vector3 target = Vector3.Scale (restPos, scaleFactor);
+        if (!PlayerController.instance.grounded)
+            target = Vector3.Scale (aerialHandPosition, scaleFactor);
+        if (PlayerController.instance.groundSlamming)
+            target = Vector3.Scale (groundSlamHandPosition, scaleFactor);
+        if (holder && PlayerController.instance.holdingObject) {
+            target = PlayerController.instance.holdingObject.position;
+            target += transform.up * holdOffset;
+            target -= estrangedParent.position;
+        }
+
+        transform.position = Vector3.Lerp (transform.position, estrangedParent.position + target, Time.deltaTime * lerpSpeed);
 
     }
 
