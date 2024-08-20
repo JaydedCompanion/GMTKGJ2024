@@ -878,6 +878,7 @@ GameObject:
   - component: {fileID: 8001820226218631999}
   - component: {fileID: 2939505544267019082}
   - component: {fileID: 8787577190896021098}
+  - component: {fileID: 2072809034815441196}
   m_Layer: 7
   m_Name: BeanieBoy
   m_TagString: Player
@@ -1167,6 +1168,26 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &2072809034815441196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6047742626442056173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1da8e7ea69160e488f1a0a8490a9a03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
+  lr: {fileID: 0}
+  held: {fileID: 0}
+  force: 0
+  mass: 0
+  vel: 0
+  gravity: 1
+  collisionCheckRadius: 0.1
 --- !u!1 &6346891188491193638
 GameObject:
   m_ObjectHideFlags: 0

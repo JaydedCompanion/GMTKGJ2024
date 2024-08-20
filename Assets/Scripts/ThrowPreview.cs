@@ -12,24 +12,19 @@ public class ThrowPreview : MonoBehaviour
 
     public float force;
     public float mass;
-    //public float fixedDeltaTime = 0.2f;
-    //public float vel; //Initial Velocity, calculated via V = Force / Mass * fixedTime (0.02)
-    public Vector2 vel;
+    public float vel; //Initial Velocity, calculated via V = Force / Mass * fixedTime (0.02)
+    //public Vector2 vel;
     public float gravity = 1;
-    public float collisionCheckRadius = 0.1f; //Collision radius of last point on SimulationArc, to communicate with it when to stop. Currently using IgnoreRaycast Layer on some objects, suboptimal
+    public float collisionCheckRadius = 0.1f; //Collision radius of last point on SimulationArc, to communicate with it when to stop
 
     void Start()
     {
         playerController = GetComponent<PlayerController>();
 
-        //held = playerController.holdingObject;
-
         lr = GetComponent<LineRenderer>();
-        lr.startColor = Color.white;
+        lr.startColor = Color.white; //this doesnt work for some reason
 
-        force = playerController.throwForce.y / playerController.throwForce.x * 1000; //good ol' rise over run, because for some reason the throw code uses a vector for force
-        //mass = held.mass;
-        //force = playerController.holdPivotPullForce;
+        force = playerController.throwForce.y / playerController.throwForce.x * 1000; //good ol' rise over run, because the throw code uses a vector for force. Multiplied so that its not a tiny decimal               
     }
 
     void Update()
@@ -37,10 +32,14 @@ public class ThrowPreview : MonoBehaviour
         held = playerController.holdingObject;
 
         if (held != null)
-        {
-            //force = held.force;
+        {            
+            lr.enabled = true;
             mass = held.mass;
             DrawTrajectory();
+        }
+        else
+        {
+            lr.enabled = false;
         }
     }
 
@@ -57,25 +56,23 @@ public class ThrowPreview : MonoBehaviour
     {
         List<Vector2> lineRendererPoints = new List<Vector2>(); //Reset LineRenderer List for new calculation
 
-        float maxDuration = 5f; //INPUT amount of total time for simulation
-        float timeStepInterval = 0.1f; //INPUT amount of time between each position check
+        float maxDuration = 5f; //amount of total time for simulation
+        float timeStepInterval = 0.05f; //amount of time between each position check
         int maxSteps = (int)(maxDuration / timeStepInterval);//Calculates amount of steps simulation will iterate for
         Vector2 directionVector = playerController.facingDirection;
-        //Vector2 launchPosition = held.transform.position;
-        Vector2 launchPosition = playerController.holdPivot.transform.position;
+        Vector2 launchPosition = held.transform.position;       
 
-        //vel = force / mass * Time.fixedDeltaTime;
-        vel = held.velocity;
+        vel = force / mass * Time.fixedDeltaTime;
 
         for (int i = 0; i < maxSteps; ++i)
         {
             //Remember f(t) = (x0 + x*t, y0 + y*t - 9.81t²/2)
             //calculatedPosition = Origin + (transform.up * (speed * which step * the length of a step);
-            Vector2 calculatedPosition = launchPosition + directionVector * vel * i * timeStepInterval; //Move both X and Y at a constant speed per Interval
-            //Vector2 calculatedPosition = (launchPosition.x + vel.x * i * timeStepInterval, launchPosition.y + vel.y * i * timeStepInterval);
-            calculatedPosition.y += Physics2D.gravity.y / 2 * Mathf.Pow(i * timeStepInterval, 2); //Subtract Gravity from Y
+            Vector2 calculatedPosition = launchPosition + (directionVector * vel * i * timeStepInterval); //Move both X and Y at a constant speed per Interval
+            calculatedPosition.y += Physics2D.gravity.y/2 * Mathf.Pow(i * timeStepInterval, 2); //Subtract Gravity from Y
+            //can't figure out how to get this curve more accurate
 
-            lineRendererPoints.Add(calculatedPosition); //Add this to the next entry on the list
+            lineRendererPoints.Add(calculatedPosition);
 
             if (CheckForCollision(calculatedPosition)) //if you hit something, stop adding positions
             {
