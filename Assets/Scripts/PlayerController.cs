@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour {
     public static UnityEngine.Events.UnityEvent groundSlamShockwave = new UnityEngine.Events.UnityEvent ();
 	public bool grounded { get { return Time.time - timeSinceLastGrounded < coyoteTime; } }
     public bool groundSlamming { get; private set; }
-    public Rigidbody2D rb { get; private set; }
+public Rigidbody2D rb { get; private set; }
     public Collider2D coll { get; private set; }
     private Collider2D groundColliderA;
     private Collider2D groundColliderB;
@@ -124,8 +124,11 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (holdingObject) {
-            if (Input.GetButtonDown ("Submit")) {
-                holdingObject.velocity = Vector2.Scale(throwForce, facingDirection) + rb.velocity;
+            if (Mathf.Abs(Input.GetAxisRaw ("Vertical")) > 0.5f) {
+                if (Input.GetAxisRaw ("Vertical") > 0.5f)
+                    holdingObject.velocity = Vector2.Scale (throwForce, facingDirection) + rb.velocity;
+                else
+                    holdingObject.velocity = Vector3.zero;
                 holdingObject = null;
                 holdingObjectCollider.enabled = true;
                 holdingObjectCollider = null;               
@@ -164,7 +167,10 @@ public class PlayerController : MonoBehaviour {
 
         if (!groundSlamming) {
             Vector3 vel = rb.velocity;
-            vel.x += (grounded ? horizontalRunForce : horizontalAirForce).Evaluate ((float)sizeMode / (float)SizeModes.BEEG) * Input.GetAxisRaw ("Horizontal");
+            if (ExitDoorway.instance.levelDone)
+                vel.x += horizontalRunForce.Evaluate ((float)sizeMode / (float)SizeModes.BEEG);
+            else
+                vel.x += (grounded ? horizontalRunForce : horizontalAirForce).Evaluate ((float)sizeMode / (float)SizeModes.BEEG) * Input.GetAxisRaw ("Horizontal");
             vel.x = vel.x * (1 - (grounded ? horizontalDrag : horizontalAirDrag));
             rb.velocity = vel;
         }
@@ -185,6 +191,9 @@ public class PlayerController : MonoBehaviour {
         rb.velocity = vel;
     }
 
+	private void OnCollisionEnter2D (Collision2D collision) {
+        OnCollisionStay2D (collision);
+	}
 	private void OnCollisionStay2D (Collision2D collision) {
         foreach (ContactPoint2D point in collision.contacts)
             DrawX (point.point, 0.1f, Color.red);
@@ -193,7 +202,7 @@ public class PlayerController : MonoBehaviour {
             if (collision.collider.tag == "ResizerPiece")
                 GrabObject (collision);
             //Only allow grabbing the resizer if the player is standing on it (which can be determined by whether the object that the player is standing on is the resizer collider) and they press the interact key
-            if (collision.collider.name == "Resizer" && Input.GetButton ("Submit") && (groundColliderA == collision.collider || groundColliderB == collision.collider))
+            if (collision.collider.name == "Resizer" && Input.GetButton ("Submit") && (groundColliderA == collision.collider || groundColliderB == collision.collider) && sizeMode != SizeModes.SMOL)
                 GrabObject (collision);
         }
     }
@@ -207,13 +216,13 @@ public class PlayerController : MonoBehaviour {
 
     public static void DrawX (Vector3 position, float size, Color col) {
         Debug.DrawLine (
-            position - (PlayerController.facingRight * size / 2),
-            position + (PlayerController.facingRight * size / 2),
+            position - (facingRight * size / 2),
+            position + (facingRight * size / 2),
             col
             );
         Debug.DrawLine (
-            position - (PlayerController.facingLeft * size / 2),
-            position + (PlayerController.facingLeft * size / 2),
+            position - (facingLeft * size / 2),
+            position + (facingLeft * size / 2),
             col
             );
     }

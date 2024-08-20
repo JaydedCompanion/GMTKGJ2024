@@ -65,7 +65,7 @@ public class PlayerLegAnimator : MonoBehaviour {
         //This leg is idle if the player isn't moving, or if they're being held
         bool idle = Mathf.Abs(Input.GetAxisRaw("Horizontal")) < 0.5f || Resizer.instance.holdingPlayer;
 
-        RaycastHit2D rayHit = Physics2D.Raycast (jointWorldSpace, Vector3.Scale (idle ? raycastDirectionIdle : raycastDirectionWalk, scaleFactor), rayDistance);
+        RaycastHit2D rayHit = Physics2D.Raycast (jointWorldSpace, Vector3.Scale (idle ? raycastDirectionIdle : raycastDirectionWalk, scaleFactor), rayDistance, PlayerController.instance.groundLayers);
         Vector3 rayHitPos = rayHit.point;
         Vector3 dPos = jointWorldSpace - transform.position;
         Debug.DrawRay (stepPosition, dPos);

@@ -52,7 +52,10 @@ public class PlayerFaceAnimator : MonoBehaviour {
             }
 		}
 
-        transform.position = estrangedParent.position;
+        if (PlayerController.instance.groundSlamming)
+            renderer.sprite = grimace;
+
+        transform.position = estrangedParent.position - Vector3.forward * 0.2f;
         transform.localScale = Vector3.Lerp (transform.localScale, PlayerController.instance.facingDirection, Time.deltaTime * PlayerController.instance.scaleLerpSpeed);
 
     }

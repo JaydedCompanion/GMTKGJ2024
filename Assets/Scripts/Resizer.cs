@@ -26,10 +26,13 @@ public class Resizer : MonoBehaviour {
 	public float yeetForceHorizontal;
 	public float exitClearanceDistance;
 	[Header ("Break/Repair Parameters")]
+	public ParticleSystem appearParticles;
+	public bool manualPieceInstances;
 	public List<Rigidbody2D> pieceInstances = new List<Rigidbody2D> ();
 	public float pieceDistanceToRepair;
 	public float pieceMinDistanceAfterDestruction;
 	public float explodeForce;
+	public int appearParticleCount = 20;
 	[Header ("Prompt Visualizer Parameters")]
 	public LayerMask openingBlockers;
 	public ResizerOpeningUI openingTop;
@@ -44,12 +47,12 @@ public class Resizer : MonoBehaviour {
 
 	private void Start () {
 		instance = this;
-		foreach (GameObject g in GameObject.FindGameObjectsWithTag ("ResizerPiece"))
-			pieceInstances.Add (g.GetComponent<Rigidbody2D> ());
 		rb = GetComponent<Rigidbody2D> ();
-		foreach (Collider2D coll in GetComponents<Collider2D> ())
-			if (!coll.isTrigger)
-				this.coll = coll;
+		coll = GetComponent<Collider2D> ();
+		if (!Application.isPlaying) return;
+		if (!manualPieceInstances)
+			foreach (GameObject g in GameObject.FindGameObjectsWithTag ("ResizerPiece"))
+				pieceInstances.Add (g.GetComponent<Rigidbody2D> ());
 	}
 
 	// Update is called once per frame
@@ -106,14 +109,19 @@ public class Resizer : MonoBehaviour {
 				foreach (Rigidbody2D instance in pieceInstances)
 					instance.gameObject.SetActive (false);
 				rb.velocity = Vector3.zero;
+				PlayerController.instance.holdingObject = null;
+				if (PlayerController.instance.holdingObjectCollider)
+					PlayerController.instance.holdingObjectCollider.enabled = true;
+				PlayerController.instance.holdingObjectCollider = null;
+				appearParticles.Emit (appearParticleCount);
 			}
-			bool allOutsideRange = true;
+			bool someOutsideRange = false;
 			foreach (Rigidbody2D instance in pieceInstances)
-				if (Vector3.Distance (transform.position, instance.position) < pieceMinDistanceAfterDestruction) {
-					allInRange = false;
+				if (Vector3.Distance (transform.position, instance.position) > pieceMinDistanceAfterDestruction) {
+					someOutsideRange = true;
 					break;
 				}
-			if (allOutsideRange)
+			if (someOutsideRange)
 				piecesSeparating = false;
 			//Disable collision while dormant
 			coll.enabled = false;
@@ -237,8 +245,9 @@ public class Resizer : MonoBehaviour {
 
 	public void Detonate () {
 		foreach (Rigidbody2D instance in pieceInstances) {
-			instance.transform.position = transform.position;
-			instance.velocity = new Vector2 (Random.Range (-1f, 1f), Random.Range (-1f, 1f)).normalized * explodeForce;
+			Vector3 rand = new Vector2 (Random.Range (-1f, 1f), Random.Range (-1f, 1f)).normalized;
+			instance.transform.position = transform.position + (rand * 0.25f);
+			instance.velocity = rand * explodeForce;
 			instance.gameObject.SetActive (enabled);
 		}
 		dormant = true;
