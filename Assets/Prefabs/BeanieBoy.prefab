@@ -323,7 +323,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 468394590, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
+  m_Sprite: {fileID: -509281682, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -351,11 +351,19 @@ MonoBehaviour:
   blink: {fileID: 34439738, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
   smile: {fileID: -104625409, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
   grimace: {fileID: -1125933, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
-  pleading: {fileID: -996334545, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
+  easterEggs:
+  - {fileID: -996334545, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
+  - {fileID: -509281682, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
+  - {fileID: 517259289, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
+  - {fileID: 557592025, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
+  - {fileID: -1270184542, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
+  - {fileID: -1426732463, guid: 09e25ccdbfad249669b21dfb1706149e, type: 3}
   minBlinkTime: 2
   maxBlinkTime: 8
   blinkDuration: 0.1
   blinkTimer: 0
+  idleDuration: 5
+  idleTimer: 0
 --- !u!1 &1334718609820984211
 GameObject:
   m_ObjectHideFlags: 0

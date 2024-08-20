@@ -15,6 +15,7 @@ public class ExitDoorway : MonoBehaviour {
     public float delayBeforeNextLevel = 1;
 
     public bool levelDone { get; private set; }
+    private bool restarting;
     private Vector3 startPosTop;
     private Vector3 startPosBottom;
 
@@ -26,6 +27,11 @@ public class ExitDoorway : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
+        if (Input.GetButtonDown ("Restart") && !restarting) {
+            restarting = true;
+            StartCoroutine ("ReloadScene");
+        }
         //Determine whether this gate should open by verifying that no Resizers remain to be built
         open = true;
         if (FindObjectsOfType<Resizer>().Length > 0)
@@ -56,8 +62,20 @@ public class ExitDoorway : MonoBehaviour {
 	}
 
     private IEnumerator LoadNextScene () {
-        yield return new WaitForSecondsRealtime (delayBeforeNextLevel);
+        if (!SceneTransition.instance)
+            SceneTransition.SpawnInstance ();
+        yield return new WaitForSecondsRealtime (delayBeforeNextLevel/2);
+        SceneTransition.instance.StartTransition ();
+        yield return new WaitForSecondsRealtime (delayBeforeNextLevel / 2);
         SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
-	}
+    }
+
+    private IEnumerator ReloadScene () {
+        if (!SceneTransition.instance)
+            SceneTransition.SpawnInstance ();
+        SceneTransition.instance.StartTransition ();
+        yield return new WaitForSecondsRealtime (delayBeforeNextLevel / 2);
+        SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
+    }
 
 }

@@ -341,7 +341,7 @@ TextureImporter:
         width: 256
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -349,6 +349,111 @@ TextureImporter:
       bones: []
       spriteID: 58a210ea1955f4444b2023f8ee6e232e
       internalID: 34439738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeanieBoy_UwU
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66b896cfb81a14ac5aaf55abd669053a
+      internalID: 517259289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeanieBoy_Sans
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e76ece624d6c44908a8d939eec574c93
+      internalID: -1380211724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeanieBoy_Cyclops
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6a3f182f781a4908b1c4f6eb2e1526e
+      internalID: -1270184542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeanieBoy_Handsome
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20a9ae3211a134d1d9f3cf3a3bcbb0eb
+      internalID: 557592025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeanieBoy_Spidey
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14e6b40670f814e1f9baa4618e9238d4
+      internalID: -1426732463
       vertices: []
       indices: 
       edges: []
@@ -364,19 +469,23 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BeanieBoy.Outline_1: 1487645116
       BeanieBoy.Outline_3: 1935578734
       BeanieBoy.Outline_5: -1053725012
       BeanieBoy_ArmL: 1580908806906673084
       BeanieBoy_ArmR: 5517697270240569580
       BeanieBoy_Blink: 34439738
       BeanieBoy_Body: 775378041529097469
+      BeanieBoy_Cyclops: -1270184542
       BeanieBoy_Grimace: -1125933
+      BeanieBoy_Handsome: 557592025
       BeanieBoy_Idle: -509281682
       BeanieBoy_LegL: 4216197199236428641
       BeanieBoy_LegR: 7484903045356593102
       BeanieBoy_Pleading: -996334545
+      BeanieBoy_Sans: -1380211724
       BeanieBoy_Smile: -104625409
+      BeanieBoy_Spidey: 1487645116
+      BeanieBoy_UwU: 517259289
       BeanieBoy_Walking: 468394590
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
