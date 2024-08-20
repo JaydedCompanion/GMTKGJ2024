@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8390086689626179061}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ResizerPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7166118928375116552}
   - component: {fileID: 105816141232197442}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BodyBoxShape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6877505683270176771}
   - component: {fileID: 547456273186011935}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BodyBoxShape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 3316499485217326467}
   - component: {fileID: 3871107254695249610}
   - component: {fileID: 6414805047572887690}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ResizerPS.T
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5047,7 +5047,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5032447509551881391}
   - component: {fileID: 1996532950992671910}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BodyBoxShape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5131,7 +5131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1893428513217891558}
   - component: {fileID: 7215235037809164189}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BodyBoxShape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5216,7 +5216,7 @@ GameObject:
   - component: {fileID: 4795618978142732073}
   - component: {fileID: 6512942658101836868}
   - component: {fileID: 230204764144702907}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ResizerPS.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10324,7 +10324,7 @@ GameObject:
   - component: {fileID: 669065994777935494}
   - component: {fileID: 129186752287226446}
   - component: {fileID: 7042987028479625692}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ResizerPS.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15261,7 +15261,7 @@ GameObject:
   - component: {fileID: 8963444425643276007}
   - component: {fileID: 7241554704398730445}
   - component: {fileID: 1788074842002095970}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Resizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15811,7 +15811,7 @@ GameObject:
   - component: {fileID: 6460562030793749910}
   - component: {fileID: 8295403543754240798}
   - component: {fileID: 7565656706538618620}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ResizerPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}

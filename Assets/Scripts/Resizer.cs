@@ -27,6 +27,7 @@ public class Resizer : MonoBehaviour {
 	public float exitClearanceDistance;
 	[Header ("Break/Repair Parameters")]
 	public ParticleSystem appearParticles;
+	public bool manualPieceInstances;
 	public List<Rigidbody2D> pieceInstances = new List<Rigidbody2D> ();
 	public float pieceDistanceToRepair;
 	public float pieceMinDistanceAfterDestruction;
@@ -49,8 +50,9 @@ public class Resizer : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D> ();
 		coll = GetComponent<Collider2D> ();
 		if (!Application.isPlaying) return;
-		foreach (GameObject g in GameObject.FindGameObjectsWithTag ("ResizerPiece"))
-			pieceInstances.Add (g.GetComponent<Rigidbody2D> ());
+		if (!manualPieceInstances)
+			foreach (GameObject g in GameObject.FindGameObjectsWithTag ("ResizerPiece"))
+				pieceInstances.Add (g.GetComponent<Rigidbody2D> ());
 	}
 
 	// Update is called once per frame

@@ -243,6 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc7694394e724b98b32d740003f4c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holder: 1
+  holdOffset: 0.3
   joint: {x: 0.25, y: 0, z: 0}
   aerialHandPosition: {x: 0.6, y: 0.2, z: 0}
   groundSlamHandPosition: {x: 0.15, y: -0.45, z: 0}
@@ -1003,7 +1005,7 @@ MonoBehaviour:
   groundedRaycastDistance: 0.1
   groundLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 321
   groundSlamMinijumpForce: 6
   holdPivot: {fileID: 4150410486371846432}
   holdPivotPullForce: 10000
@@ -1107,6 +1109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc7694394e724b98b32d740003f4c0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holder: 0
+  holdOffset: 0
   joint: {x: -0.25, y: 0, z: 0}
   aerialHandPosition: {x: -0.6, y: 0.2, z: 0}
   groundSlamHandPosition: {x: -0.15, y: -0.45, z: 0}

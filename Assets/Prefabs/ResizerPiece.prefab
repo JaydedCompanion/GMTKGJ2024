@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3113658865945804757}
   - component: {fileID: 8069858541037502564}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ResizerPieceRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 7405964171966881653}
   - component: {fileID: 7737149215836738127}
   - component: {fileID: 2600492660488133899}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ResizerPiece
   m_TagString: ResizerPiece
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 671745660152081878}
   - component: {fileID: 2926332736487677450}
   - component: {fileID: 64704174196707515}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}

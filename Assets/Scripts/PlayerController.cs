@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour {
     public static UnityEngine.Events.UnityEvent groundSlamShockwave = new UnityEngine.Events.UnityEvent ();
 	public bool grounded { get { return Time.time - timeSinceLastGrounded < coyoteTime; } }
     public bool groundSlamming { get; private set; }
-    public Rigidbody2D rb { get; private set; }
+public Rigidbody2D rb { get; private set; }
     public Collider2D coll { get; private set; }
     private Collider2D groundColliderA;
     private Collider2D groundColliderB;
@@ -167,7 +167,10 @@ public class PlayerController : MonoBehaviour {
 
         if (!groundSlamming) {
             Vector3 vel = rb.velocity;
-            vel.x += (grounded ? horizontalRunForce : horizontalAirForce).Evaluate ((float)sizeMode / (float)SizeModes.BEEG) * Input.GetAxisRaw ("Horizontal");
+            if (ExitDoorway.instance.levelDone)
+                vel.x += horizontalRunForce.Evaluate ((float)sizeMode / (float)SizeModes.BEEG);
+            else
+                vel.x += (grounded ? horizontalRunForce : horizontalAirForce).Evaluate ((float)sizeMode / (float)SizeModes.BEEG) * Input.GetAxisRaw ("Horizontal");
             vel.x = vel.x * (1 - (grounded ? horizontalDrag : horizontalAirDrag));
             rb.velocity = vel;
         }
@@ -188,6 +191,9 @@ public class PlayerController : MonoBehaviour {
         rb.velocity = vel;
     }
 
+	private void OnCollisionEnter2D (Collision2D collision) {
+        OnCollisionStay2D (collision);
+	}
 	private void OnCollisionStay2D (Collision2D collision) {
         foreach (ContactPoint2D point in collision.contacts)
             DrawX (point.point, 0.1f, Color.red);
