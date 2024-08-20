@@ -1,0 +1,99 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+//Based on Dan Schatzeder's Cannon Trajectory Method, found at https://github.com/Schatzeder/Trajectory-Prediction
+
+public class ThrowPreview : MonoBehaviour
+{
+    [SerializeField] PlayerController playerController;
+    [SerializeField] LineRenderer lr;
+    public Rigidbody2D held; //object being held
+
+    public float force;
+    public float mass;
+    //public float fixedDeltaTime = 0.2f;
+    //public float vel; //Initial Velocity, calculated via V = Force / Mass * fixedTime (0.02)
+    public Vector2 vel;
+    public float gravity = 1;
+    public float collisionCheckRadius = 0.1f; //Collision radius of last point on SimulationArc, to communicate with it when to stop. Currently using IgnoreRaycast Layer on some objects, suboptimal
+
+    void Start()
+    {
+        playerController = GetComponent<PlayerController>();
+
+        //held = playerController.holdingObject;
+
+        lr = GetComponent<LineRenderer>();
+        lr.startColor = Color.white;
+
+        force = playerController.throwForce.y / playerController.throwForce.x * 1000; //good ol' rise over run, because for some reason the throw code uses a vector for force
+        //mass = held.mass;
+        //force = playerController.holdPivotPullForce;
+    }
+
+    void Update()
+    {
+        held = playerController.holdingObject;
+
+        if (held != null)
+        {
+            //force = held.force;
+            mass = held.mass;
+            DrawTrajectory();
+        }
+    }
+
+    void DrawTrajectory()
+    {
+        lr.positionCount = SimulateArc().Count;
+        for (int a = 0; a < lr.positionCount; a++)
+        {
+            lr.SetPosition(a, SimulateArc()[a]); //Add each Calculated Step to a LineRenderer to display a Trajectory. Look inside LineRenderer in Unity to see exact points and amount of them
+        }
+    }
+
+    private List<Vector2> SimulateArc()
+    {
+        List<Vector2> lineRendererPoints = new List<Vector2>(); //Reset LineRenderer List for new calculation
+
+        float maxDuration = 5f; //INPUT amount of total time for simulation
+        float timeStepInterval = 0.1f; //INPUT amount of time between each position check
+        int maxSteps = (int)(maxDuration / timeStepInterval);//Calculates amount of steps simulation will iterate for
+        Vector2 directionVector = playerController.facingDirection;
+        //Vector2 launchPosition = held.transform.position;
+        Vector2 launchPosition = playerController.holdPivot.transform.position;
+
+        //vel = force / mass * Time.fixedDeltaTime;
+        vel = held.velocity;
+
+        for (int i = 0; i < maxSteps; ++i)
+        {
+            //Remember f(t) = (x0 + x*t, y0 + y*t - 9.81t²/2)
+            //calculatedPosition = Origin + (transform.up * (speed * which step * the length of a step);
+            Vector2 calculatedPosition = launchPosition + directionVector * vel * i * timeStepInterval; //Move both X and Y at a constant speed per Interval
+            //Vector2 calculatedPosition = (launchPosition.x + vel.x * i * timeStepInterval, launchPosition.y + vel.y * i * timeStepInterval);
+            calculatedPosition.y += Physics2D.gravity.y / 2 * Mathf.Pow(i * timeStepInterval, 2); //Subtract Gravity from Y
+
+            lineRendererPoints.Add(calculatedPosition); //Add this to the next entry on the list
+
+            if (CheckForCollision(calculatedPosition)) //if you hit something, stop adding positions
+            {
+                break; //stop adding positions
+            }
+        }
+        return lineRendererPoints;
+    }
+
+    private bool CheckForCollision(Vector2 position)
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(position, collisionCheckRadius); //Measure collision via a small circle at the latest position, dont continue simulating Arc if hit
+        if (hits.Length > 0) //Return true if something is hit, stopping Arc simulation
+        {
+            return true;
+        }
+        return false;
+    }
+}
+
+

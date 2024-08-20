@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour {
                 holdingObject.velocity = Vector2.Scale(throwForce, facingDirection) + rb.velocity;
                 holdingObject = null;
                 holdingObjectCollider.enabled = true;
-                holdingObjectCollider = null;
+                holdingObjectCollider = null;               
             }
         }
 
@@ -202,7 +202,7 @@ public class PlayerController : MonoBehaviour {
         holdingObject = objectToGrab.rigidbody;
         holdingObject.velocity = holdPivotInitialJump;
         holdingObjectCollider = objectToGrab.collider;
-        holdingObjectCollider.enabled = false;
+        holdingObjectCollider.enabled = false;       
     }
 
     public static void DrawX (Vector3 position, float size, Color col) {
